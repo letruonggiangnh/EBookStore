@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Toolbar
+        android:id="@+id/detail_book_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/text_color">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_arrow_back_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Chọn địa chỉ giao hàng"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </Toolbar>
+    <TextView
+        android:id="@+id/textViewCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/detail_book_toolbar"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="Tỉnh / Thành phố"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <Spinner
+        android:id="@+id/citySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewCity"
+        android:layout_margin="15dp"
+        android:background="@drawable/spinner_border"
+        android:spinnerMode="dialog"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/textViewDistrict"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/citySpinner"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="Quận / Huyện"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <Spinner
+        android:id="@+id/districtSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDistrict"
+        android:layout_margin="15dp"
+        android:background="@drawable/spinner_border"
+        android:spinnerMode="dialog" />
+    <TextView
+        android:id="@+id/textViewWard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/districtSpinner"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="Phường / Xã"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <Spinner
+        android:id="@+id/wardSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewWard"
+        android:layout_margin="15dp"
+        android:background="@drawable/spinner_border"
+        android:spinnerMode="dialog" />
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wardSpinner"
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:text="Địa chỉ"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/addressEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAddress"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:inputType="text"
+        android:background="@drawable/spinner_border"
+        android:spinnerMode="dialog" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:background="@drawable/rounded_button_background"
+        android:text="Xác nhận địa chỉ" />
+</RelativeLayout>

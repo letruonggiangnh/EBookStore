@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +19,6 @@ import com.example.ebookstore.Retrofit.ProductBookService;
 import com.example.ebookstore.Retrofit.RetrofitService;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -31,20 +31,30 @@ public class BookDetailActivity extends AppCompatActivity {
     private TextView bookOriginPriceTextView;
     private TextView discountRate;
     private TextView supplierTextview;
-    private TextView authorTextView;
+    private TextView authorTextView, changeAddress;
     private TextView publishingCompanyTextView;
     private TextView bookDescription1, bookDescription2;
     private ImageView productImg;
     String baseUrl = Constants.Base_url;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.book_detail);
+        setContentView(R.layout.book_detail_activity);
+        getSupportActionBar().hide();
         anhxa();
         displayProductDetail();
         getBookDetailById();
         getBookDescription();
+        changeAddressShipping();
+    }
+    private void changeAddressShipping() {
+        changeAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookDetailActivity.this, ChangeAddressActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private void displayProductDetail() {
         try{
@@ -98,13 +108,14 @@ public class BookDetailActivity extends AppCompatActivity {
             call.enqueue(new Callback<List<BookDescription>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<BookDescription>> call, @NonNull Response<List<BookDescription>> response) {
-                    if(response.body() != null)
-                    {
+                    if (response.isSuccessful() && response.body() != null) {
                         List<BookDescription> bookDescriptions = response.body();
-                        if(bookDescriptions.size() > 0)
-                        {
+                        int size = bookDescriptions.size();
+                        if (size > 0) {
                             bookDescription1.setText(bookDescriptions.get(0).getDescription());
-                            bookDescription2.setText(bookDescriptions.get(1).getDescription());
+                            if (size > 1) {
+                                bookDescription2.setText(bookDescriptions.get(1).getDescription());
+                            }
                         }
                     }
                 }
@@ -117,7 +128,6 @@ public class BookDetailActivity extends AppCompatActivity {
             ex.printStackTrace();
         }
     }
-
     private void getBookDetailById() {
         Intent intent = getIntent();
         int productId = intent.getIntExtra("product_id",0);
@@ -165,5 +175,6 @@ public class BookDetailActivity extends AppCompatActivity {
         publishingCompanyTextView = findViewById(R.id.publishingCompany);
         bookDescription1 = findViewById(R.id.bookDescription1);
         bookDescription2 = findViewById(R.id.bookDescription2);
+        changeAddress = findViewById(R.id.changeAddressTextView);
     }
 }

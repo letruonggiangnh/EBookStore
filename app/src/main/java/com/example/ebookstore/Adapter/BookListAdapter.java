@@ -17,31 +17,28 @@ import com.squareup.picasso.Picasso;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class TrendingBookAdapter extends RecyclerView.Adapter<TrendingBookAdapter.TrendingBookViewHolder> {
-
+public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookListViewHolder>{
     private final List<BookViewModel> mListProductBook;
-    private OnItemClickListener mListener;
-
+    private TrendingBookAdapter.OnItemClickListener mListener;
     public interface OnItemClickListener {
         void onItemClick(BookViewModel book);
     }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mListener = listener;
-    }
-
-    public TrendingBookAdapter(List<BookViewModel> mListProductBook) {
+    public BookListAdapter(List<BookViewModel> mListProductBook)
+    {
         this.mListProductBook = mListProductBook;
     }
-
+    public void setOnItemClickListener(TrendingBookAdapter.OnItemClickListener listener) {
+        mListener = listener;
+    }
     @NonNull
     @Override
-    public TrendingBookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.trending_view_holder, parent, false);
-        return new TrendingBookViewHolder(view);
+    public BookListAdapter.BookListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_category_list_view_holder, parent, false);
+        return new BookListAdapter.BookListViewHolder(view);
     }
+
     @Override
-    public void onBindViewHolder(@NonNull TrendingBookViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookListAdapter.BookListViewHolder holder, int position) {
         BookViewModel productBook = mListProductBook.get(position);
         DecimalFormat decimalFormat = new DecimalFormat("###,### đ");
         int discountRate = productBook.getDiscount();
@@ -96,19 +93,19 @@ public class TrendingBookAdapter extends RecyclerView.Adapter<TrendingBookAdapte
         }
         return 0;
     }
-    public static class TrendingBookViewHolder extends RecyclerView.ViewHolder
-    {
+
+    public class BookListViewHolder extends RecyclerView.ViewHolder {
         private final ImageView prodImage;
         private final TextView prodName;
         private final TextView prodPrice;
         private final TextView prodPriceOriginal;
         private final TextView discountRate;
-        public TrendingBookViewHolder(@NonNull View itemView) {
+        public BookListViewHolder(@NonNull View itemView) {
             super(itemView);
-            prodImage = itemView.findViewById(R.id.trendingProductImg);
-            prodName = itemView.findViewById(R.id.trendingProductName);
-            prodPrice = itemView.findViewById(R.id.trendingProductPrice);
-            prodPriceOriginal = itemView.findViewById(R.id.trendingBookPriceOriginal);
+            prodImage = itemView.findViewById(R.id.productImg);
+            prodName = itemView.findViewById(R.id.productName);
+            prodPrice = itemView.findViewById(R.id.productPrice);
+            prodPriceOriginal = itemView.findViewById(R.id.bookPriceOriginal);
             discountRate = itemView.findViewById(R.id.discount_rate);
         }
     }

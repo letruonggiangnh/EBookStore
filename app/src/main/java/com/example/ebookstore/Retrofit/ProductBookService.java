@@ -18,4 +18,6 @@ public interface ProductBookService {
         Call<ProductBook> getBookById(@Query("id") int id);
         @GET("api/ProductBook/bookdescription?")
         Call<List<BookDescription>> getBookDescById(@Query("id") int id);
+        @GET("api/ProductBook/bookList")
+        Call<List<BookViewModel>> getBookByParentId(@Query("bookParentId") int parentId);
 }

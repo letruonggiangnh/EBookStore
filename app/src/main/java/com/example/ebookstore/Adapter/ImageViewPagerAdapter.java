@@ -14,7 +14,6 @@ import com.example.ebookstore.R;
 import java.util.List;
 
 public class ImageViewPagerAdapter extends PagerAdapter {
-
     private final List<ImageSlider> mListImageSlider;
 
     public ImageViewPagerAdapter(List<ImageSlider> mListImageSlider) {
